@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formativa 1 - Leonardo</title>
+    <style>
+        /* Reset e configurações básicas */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            background-color: #E6F3FF; /* Azul muito claro para fundo */
+            color: #333;
+        }
+
+        /* Menu de navegação fixo */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: #1B4965; /* Azul escuro para o menu */
+            padding: 1rem;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #CAE9FF; /* Azul claro para links */
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: #5FA8D3; /* Azul médio no hover */
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Container principal */
+        .container {
+            max-width: 1200px;
+            margin: 80px auto 0;
+            padding: 20px;
+        }
+
+        /* Seções principais com sombra */
+        .intro, .destaque, .artigo, .imagem-grande, .artigos-extra {
+            background-color: white;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(27, 73, 101, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .intro:hover, .destaque:hover, .artigo:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Layout flexível */
+        .flex-container {
+            display: flex;
+            gap: 25px;
+            margin: 20px 0;
+        }
+
+        /* Galeria de imagens */
+        .galeria {
+            display: flex;
+            justify-content: space-between;
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .galeria-item {
+            flex: 1;
+            text-align: center;
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(27, 73, 101, 0.1);
+        }
+
+        .galeria-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .galeria-item:hover img {
+            transform: scale(1.03);
+        }
+
+        .galeria-item figcaption {
+            margin-top: 15px;
+            color: #1B4965;
+            font-weight: 500;
+        }
+
+        /* Imagens responsivas */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Estilos de texto */
+        h2 {
+            color: #1B4965;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            color: #5FA8D3;
+            margin-bottom: 10px;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #1B4965;
+            color: #CAE9FF;
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+            border-radius: 12px 12px 0 0;
+        }
+
+        /* Media Query para telas menores */
+        @media (max-width: 500px) {
+            .flex-container {
+                flex-direction: column;
+            }
+
+            .galeria {
+                flex-direction: column;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 1rem;
+            }
+
+            .container {
+                margin-top: 200px;
+                padding: 10px;
+            }
+
+            .galeria-item img {
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#destinos">Destinos</a></li>
+            <li><a href="#experiencias">Experiências</a></li>
+            <li><a href="#galeria">Galeria</a></li>
+            <li><a href="#contato">Contato</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="flex-container">
+            <section class="intro">
+                <h2>Descubra o Mundo</h2>
+                <p>Bem-vindo ao seu guia de viagens personalizado. Explore destinos incríveis, culturas fascinantes e experiências únicas que transformarão sua forma de viajar.</p>
+            </section>
+
+            <section class="destaque">
+                <article>
+                    <h3>Aventuras na Natureza</h3>
+                    <p>Descubra trilhas secretas, cachoeiras escondidas e paisagens de tirar o fôlego em nossos roteiros especiais de ecoturismo.</p>
+                </article>
+                <article>
+                    <h3>Experiências Culturais</h3>
+                    <p>Mergulhe em festivais locais, aprenda artesanato tradicional e vivencie o dia a dia de diferentes culturas.</p>
+                </article>
+                <article>
+                    <h3>Gastronomia Mundial</h3>
+                    <p>Explore sabores únicos em mercados locais, restaurantes premiados e aulas de culinária ao redor do mundo.</p>
+                </article>
+            </section>
+        </div>
+
+        <section class="imagem-grande">
+            <img src="https://picsum.photos/seed/travel/800/400" alt="Paisagem deslumbrante">
+            <h2>Destinos em Destaque</h2>
+            <p>Conheça lugares extraordinários que combinam beleza natural, história rica e experiências inesquecíveis.</p>
+        </section>
+
+        <section class="artigos-extra">
+            <h2>Experiências Únicas</h2>
+            <div class="flex-container">
+                <article class="artigo">
+                    <h3>Roteiros Exclusivos</h3>
+                    <p>Planejamos itinerários personalizados que fogem do turismo convencional e revelam tesouros escondidos.</p>
+                </article>
+                <article class="artigo">
+                    <h3>Hospedagens Autênticas</h3>
+                    <p>De hotéis boutique a casas de família, oferecemos opções que proporcionam uma imersão cultural genuína.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="galeria" class="galeria">
+            <figure class="galeria-item">
+                <img src="https://picsum.photos/seed/beach/400/300" alt="Praia paradisíaca">
+                <figcaption>Praias Tropicais</figcaption>
+            </figure>
+            <figure class="galeria-item">
+                <img src="https://picsum.photos/seed/mountain/400/300" alt="Montanhas majestosas">
+                <figcaption>Aventuras nas Montanhas</figcaption>
+            </figure>
+            <figure class="galeria-item">
+                <img src="https://picsum.photos/seed/city/400/300" alt="Cidade histórica">
+                <figcaption>Cidades Históricas</figcaption>
+            </figure>
+        </section>
+
+        <footer>
+            <p>&copy; 2025 - Viagens & Aventuras</p>
+            <p>Desenvolvido por Leonardo</p>
+        </footer>
+    </div>
+</body>
+</html>

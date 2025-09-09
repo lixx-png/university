@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Página Exemplo Flexbox</title>
+  <style>
+    /* 
+      Definições básicas para toda a página.
+      O viewport está configurado acima (<meta name="viewport">)
+      para permitir que a página seja adaptada em telas menores.
+    */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      background: #f2f2f2;
+    }
+
+    /* 
+      A "container" é o flex container principal.
+      - flex-wrap: wrap -> faz os elementos quebrarem linha quando não couberem.
+      - gap: espaço entre blocos, importante para manter proporção em qualquer tela.
+      - min-height: 100vh -> garante que ocupe a altura toda da tela.
+    */
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      min-height:100vh ;
+      gap: 15px;
+      padding: 15px;
+      box-sizing: border-box;
+      justify-content: center; /* centraliza horizontalmente quando sobra espaço */
+    }
+
+    /* 
+      Todos os blocos semânticos recebem estilo padrão.
+      O "box-sizing: border-box" garante que padding e borda
+      sejam incluídos no cálculo da largura, o que facilita
+      a responsividade sem estourar o layout.
+    */
+    header, nav, main, section, article, footer, aside {
+      padding: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      background-color: #fff;
+      box-sizing: border-box;
+    }
+
+    /* 
+      Header ocupa 100% da largura, tanto em desktop quanto em mobile.
+    */
+    header {
+      flex: 1 0 100%;
+    }
+
+    /* 
+      Menu de navegação como lista flexível (horizontal).
+      O "gap" garante espaçamento proporcional em qualquer tela.
+    */
+    nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+
+    /* 
+      Primeira linha: introdução e destaque dividem metade da largura cada um.
+      - "calc(50% - 15px)" deixa espaço para o gap, mantendo responsivo.
+      - min-height: garante tamanho mínimo mesmo em telas pequenas.
+    */
+    .intro, .destaque {
+      flex: 1 1 calc(50% - 15px);
+      min-height: 200px;
+    }
+
+    /* 
+      Segunda linha: 4 artigos lado a lado.
+      - Cada um ocupa 25% da largura em desktop.
+      - O flex-basis (calc) + flex-wrap faz eles quebrarem e ocuparem 100% em telas menores.
+    */
+    .artigo {
+      flex: 1 1 calc(25% - 15px);
+      min-height: 180px;
+    }
+
+    /* 
+      Terceira linha é uma nova seção flex.
+      - flex: 1 1 100% -> ocupa largura inteira
+      - gap mantém espaçamento entre a imagem e os artigos.
+    */
+    .linha-3 {
+      display: flex;
+      flex: 1 1 100%;
+      gap: 15px;
+    }
+
+    /* 
+      Imagem ocupa metade da tela em desktop.
+      - Em telas pequenas (quando não couber), como temos flex-wrap,
+        ela quebra e passa a ocupar 100%.
+    */
+    .imagem-grande {
+      flex: 1 1 50%;
+      text-align: center;
+    }
+
+    .imagem-grande img {
+      max-width: 100%; /* responsivo: imagem nunca ultrapassa o container */
+      height: auto; /* mantém proporção da imagem */
+      border-radius: 6px;
+    }
+
+    /* 
+      Coluna da direita com artigos extras.
+      - flex-direction: column -> artigos empilhados verticalmente.
+      - gap: espaçamento entre os artigos, se ajusta em qualquer tela.
+    */
+    .artigos-extra {
+      flex: 1 1 50%;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .artigos-extra article {
+      flex: 1; /* cada artigo ocupa altura proporcional */
+      min-height: 120px;
+    }
+
+    /* 
+      Rodapé ocupa largura total e centraliza texto.
+    */
+    footer {
+      flex: 1 0 100%;
+      text-align: center;
+      font-size: 0.9em;
+      color: #555;
+    }
+
+    /* 
+      🔹 Responsividade com Media Query
+      Quando a tela for menor que 768px:
+      - Blocos passam a ocupar 100% da largura (um abaixo do outro).
+      - Isso garante leitura confortável em celular.
+    */
+    @media (max-width: 768px) {
+      .intro, .destaque,
+      .artigo,
+      .linha-3,
+      .imagem-grande,
+      .artigos-extra {
+        flex: 1 1 100%;
+      }
+
+      nav ul {
+        flex-direction: column; /* menu vira vertical em mobile */
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    
+    <header>
+      <h1>Exemplo de Página com Flexbox</h1>
+      <nav>
+        <ul>
+          <li><a href="#">Início</a></li>
+          <li><a href="#">Sobre</a></li>
+          <li><a href="#">Serviços</a></li>
+          <li><a href="#">Contato</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Primeira linha -->
+    <section class="intro">
+      <h2>Introdução</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Assumenda molestias vitae laboriosam aspernatur maiores a excepturi voluptas incidunt deleniti, debitis laudantium modi ab reprehenderit magnam impedit? Reprehenderit, explicabo debitis. Rerum. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia facilis, praesentium voluptatum dolore cum nam laboriosam delectus, quod beatae fugit vel optio quae a quam inventore quas debitis magnam nihil?</p>
+    </section>
+
+    <aside class="destaque">
+      <h2>Destaque</h2>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat cumque pariatur, alias ab necessitatibus laboriosam laborum repellat debitis sunt blanditiis ducimus assumenda voluptatum vero aliquam in! Aliquid illum error alias! Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui placeat voluptas accusamus nobis reprehenderit harum consectetur quas omnis consequatur nulla ducimus hic quo tempora deserunt aut, nesciunt, obcaecati corrupti voluptate.</p>
+    </aside>
+
+    <!-- Segunda linha - 4 blocos -->
+    <article class="artigo">
+      <h3>Artigo 1</h3>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Suscipit nulla at esse voluptas incidunt animi, quasi eligendi minus laborum exercitationem optio doloribus laudantium, facere nesciunt molestias sit, consequuntur tempore doloremque.</p>
+    </article>
+
+    <article class="artigo">
+      <h3>Artigo 2</h3>
+      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Perferendis placeat similique voluptates eligendi non eos delectus, libero blanditiis, consequuntur aut voluptatem perspiciatis quod architecto mollitia vitae, modi corrupti quam dignissimos!</p>
+    </article>
+
+    <article class="artigo">
+      <h3>Artigo 3</h3>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem pariatur, obcaecati quisquam aut provident asperiores, alias harum excepturi voluptates nisi earum, sint fuga inventore? Soluta sapiente doloribus impedit quas explicabo?</p>
+    </article>
+
+    <article class="artigo">
+      <h3>Artigo 4</h3>
+      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugit quasi deleniti soluta mollitia, modi quas distinctio blanditiis odio, harum accusantium perferendis tempora cum error, unde molestiae praesentium temporibus in debitis.</p>
+    </article>
+
+    <!-- Terceira linha - imagem + artigos -->
+    <section class="linha-3">
+      <section class="imagem-grande">
+        <h2>Imagem em Destaque</h2>
+        <figure>
+          <img src="https://via.placeholder.com/600x400" alt="Imagem de exemplo">
+          <figcaption>Legenda da imagem em destaque.</figcaption>
+        </figure>
+      </section>
+
+      <div class="artigos-extra">
+        <article>
+          <h3>Artigo 5</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta aut nam eum architecto tempore quae harum nihil totam magnam odio eos, porro dolorum eligendi iusto, eveniet voluptatum quod, nulla quaerat!</p>
+        </article>
+
+        <article>
+          <h3>Artigo 6</h3>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus earum, consectetur cupiditate laboriosam praesentium aspernatur nisi consequatur magnam odit blanditiis veritatis doloremque tenetur at. Ipsam corporis error itaque dolorum similique.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+      <p>&copy; 2025 - Exemplo Flexbox. Todos os direitos reservados.</p>
+    </footer>
+
+  </div>
+</body>
+</html>
