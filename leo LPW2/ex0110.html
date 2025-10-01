@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Endereço</title>
+</head>
+<body>
+    <h1>Formulário de Endereço</h1>
+    
+    <form id="formEndereco">
+        <div>
+            <label>CEP:</label>
+            <input type="text" id="cep" maxlength="9">
+        </div>
+        
+        <div>
+            <label>Logradouro:</label>
+            <input type="text" id="logradouro">
+        </div>
+        
+        <div>
+            <label>Número:</label>
+            <input type="text" id="numero">
+        </div>
+        
+        <div>
+            <label>UF:</label>
+            <input type="text" id="uf" maxlength="2">
+        </div>
+        
+        <div>
+            <label>Complemento:</label>
+            <input type="text" id="complemento">
+        </div>
+        
+        <button type="submit">Enviar</button>
+    </form>
+
+    <script>
+        const cep = document.getElementById('cep');
+        const logradouro = document.getElementById('logradouro');
+        const numero = document.getElementById('numero');
+        const uf = document.getElementById('uf');
+        const form = document.getElementById('formEndereco');
+
+        cep.addEventListener('input', function(e) {
+            let valor = e.target.value.replace(/\D/g, '');
+            let mascara = valor.replace(/^(\d{5})(\d)/, '$1-$2');
+            e.target.value = mascara;
+        });
+
+        uf.addEventListener('input', function(e) {
+            e.target.value = e.target.value.toUpperCase();
+        });
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const regexCep = /^\d{5}-\d{3}$/;
+            if (!regexCep.test(cep.value)) {
+                alert('CEP inválido. Use o formato 00000-000');
+                return;
+            }
+
+            if (logradouro.value.length < 5) {
+                alert('Logradouro deve ter no mínimo 5 caracteres');
+                return;
+            }
+
+            const regexNumero = /^\d+$/;
+            if (!regexNumero.test(numero.value)) {
+                alert('Número deve conter apenas dígitos');
+                return;
+            }
+
+            const regexUf = /^[A-Z]{2}$/;
+            if (!regexUf.test(uf.value)) {
+                alert('UF deve conter exatamente 2 letras maiúsculas');
+                return;
+            }
+
+            alert('Formulário válido! Enviado com sucesso.');
+        });
+    </script>
+</body>
+</html>
